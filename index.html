@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>My Kitchen</title>
+
+  <!-- Manrope Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+
+    @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeUp {
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .delay-1 { animation-delay: 0.3s; }
+  .delay-2 { animation-delay: 0.6s; }
+  .delay-3 { animation-delay: 0.9s; }
+
+  @keyframes zoomInOut {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .zoom-animation {
+    animation: zoomInOut 12s ease-in-out infinite;
+  }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+  <!-- Top Bar -->
+  <div class="text-center text-base md:text-xl py-4 bg-gray-200 border-b">
+    Subscribe to our newsletter - 
+    <span class="font-semibold">mykitchen@gmail.com</span>
+  </div>
+
+  <!-- Navbar -->
+  <header class="px-6 md:px-16 py-6 flex flex-col md:flex-row md:items-center md:justify-between">
+    
+    <!-- Logo -->
+    <div class="flex justify-center md:justify-start w-full">
+      <img src="./assets/images/logo.png" class="h-16 md:h-18 object-contain">
+    </div>
+
+    <!-- Search -->
+    <div class="flex items-center gap-2 mt-4 md:mt-0 w-full md:w-auto justify-center md:justify-end">
+      <input 
+        type="text" 
+        placeholder="Search" 
+        class="border-b outline-none px-3 py-1 w-full md:w-72" 
+      />
+      <button class="bg-red-500 text-white w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full">
+        🔎︎
+      </button>
+    </div>
+
+  </header>
+
+  <nav class="px-6 md:px-16 border-t border-b border-gray-300 py-4">
+
+  <!-- Top Bar -->
+  <div class="flex items-center justify-center md:justify-start relative">
+
+    <!-- Toggler (Mobile Only - Centered) -->
+    <button id="menu-btn" class="md:hidden text-2xl absolute left-1/2 -translate-x-1/2">
+      ☰
+    </button>
+
+  </div>
+
+  <!-- Menu -->
+  <ul id="menu"
+      class="hidden flex-col items-center gap-4 mt-4 text-base font-bold text-center
+             md:flex md:flex-row md:items-center md:justify-start md:gap-10 md:mt-0 md:text-lg">
+    
+    <li>
+      <a href="index.html" class="text-red-500 hover:text-red-600">HOME</a>
+    </li>
+
+    <li>
+      <a href="receipes.html" class="hover:text-red-500">RECIPES</a>
+    </li>
+
+    <li>
+      <a href="blog.html" class="hover:text-red-500">BLOG</a>
+    </li>
+
+    <li>
+      <a href="about.html" class="hover:text-red-500">ABOUT ME</a>
+    </li>
+
+  </ul>
+
+</nav>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+</script>
+
+  <!-- Space -->
+  <div class="h-6 md:h-10"></div>
+
+  <section class="relative w-full overflow-hidden mt-6 md:mt-10">
+  
+  <img 
+    src="./assets/images/hero image.png"
+    class="w-full h-[330px] md:h-[400px] object-cover zoom-animation"
+  />
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+    
+    <!-- Heading -->
+    <h1 class="text-red-800 text-xl sm:text-2xl md:text-5xl font-bold mb-5 animate-fadeUp">
+      Sharing my love for food
+    </h1>
+
+    <!-- Paragraph -->
+    <p class="max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed animate-fadeUp delay-1">
+      I’m excited to share my passion for all things culinary.
+      Food is not just about nourishment: it’s an experience
+      that brings people together, evokes memories, and
+      sparks creativity.
+    </p>
+
+    <!-- Button -->
+    <button class="mt-6 md:mt-8 px-6 md:px-8 py-2 md:py-3 font-bold border-2 border-red-800 bg-red-800 text-white rounded-md 
+    transition duration-300 ease-in-out hover:bg-white hover:text-red-800 animate-fadeUp delay-2
+    flex items-center gap-2">
+      GET  IN  TOUCH
+      <img src="./assets/images/arrow icon.png" 
+       alt="arrow"
+       class="w-4 h-4">
+    </button>
+
+  </div>
+  </section>
+  <!-- Bottom Space -->
+  <div class="h-10 md:h-16"></div>
+
+ <section class="py-12 px-4 md:px-6 lg:px-0">
+
+  <div class="max-w-6xl h-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-20">
+
+  
+<!-- Card 1 -->
+<div class="flex-1 min-w-0 cursor-pointer" onclick="navigateCard(0)">  
+  <div class="overflow-hidden rounded-xl">
+    <img id="img1" 
+         class="w-full h-[280px] sm:h-[320px] md:h-[360px] lg:h-[520px] object-cover transition-all duration-500 hover:scale-110">
+  </div>
+
+  <h2 id="title1" class="mt-4 text-red-800 font-bold text-lg md:text-xl text-left"></h2>
+  <p id="desc1" class="text-black-700 text-sm md:text-lg text-left"></p>
+</div>
+
+
+<!-- Card 2 -->
+<div class="flex-1 min-w-0 cursor-pointer" onclick="navigateCard(1)"> 
+  
+  <div class="overflow-hidden rounded-xl">
+    <img id="img2" 
+         class="w-full h-[280px] sm:h-[320px] md:h-[360px] lg:h-[520px] object-cover transition-all duration-500 hover:scale-110">
+  </div>
+
+  <h2 id="title2" class="mt-4 text-red-800 font-bold text-lg md:text-xl text-left"></h2>
+  <p id="desc2" class="text-black-700 text-sm md:text-lg text-left"></p>
+</div>
+
+  </div>
+
+</section>
+
+<script>
+ const data = [
+  { img: "./assets/images/bites.png", title: "BITES", desc: "Stuffed Mini Peppers", link: "chicken.html" },
+  { img: "./assets/images/side dish.png", title: "SIDE DISH", desc: "Garlic Mashed Pototoes", link: "chicken.html" },
+  { img: "./assets/images/starter.png", title: "STARTER", desc: "Caprese Salad Skewers", link: "chicken.html" },
+  { img: "./assets/images/mani course.png", title: "MAIN COURSE", desc: "Grilled Lemon Herb Chicken", link: "chicken.html" },
+  { img: "./assets/images/dessert.png", title: "DESSERTS", desc: "Chocolate Mousse", link: "chicken.html" },
+  { img: "./assets/images/platter.png", title: "PLATTER", desc: "Sea Food Platter", link: "chicken.html" }
+];
+  let index = 0;
+
+  function updateContent() {
+    const img1 = document.getElementById("img1");
+    const img2 = document.getElementById("img2");
+
+    // Fade out
+    img1.style.opacity = 0;
+    img2.style.opacity = 0;
+
+    setTimeout(() => {
+
+      // Card 1
+      img1.src = data[index].img;
+      document.getElementById("title1").textContent = data[index].title;
+      document.getElementById("desc1").textContent = data[index].desc;
+
+      // Card 2
+      img2.src = data[index + 1].img;
+      document.getElementById("title2").textContent = data[index + 1].title;
+      document.getElementById("desc2").textContent = data[index + 1].desc;
+
+      // Fade in
+      img1.style.opacity = 1;
+      img2.style.opacity = 1;
+
+      index += 2;
+      if (index >= data.length) index = 0;
+
+    }, 300);
+  }
+
+  // Initial load
+  updateContent();
+
+  // Auto change every 5 sec
+  setInterval(updateContent, 5000);
+
+  function navigateCard(offset) {
+  let currentIndex = index - 2; // because index already incremented
+  if (currentIndex < 0) currentIndex = data.length - 2;
+
+  const item = data[currentIndex + offset];
+  window.location.href = item.link;
+}
+</script>
+
+<section class="px-4 md:px-8 lg:px-0 py-12">
+  <div class="max-w-6xl mx-auto border-2 border-red-600 rounded-lg p-6 md:p-8 lg:p-10 
+              flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10
+              bg-[url('./assets/images/bg-pattern.png')] bg-no-repeat bg-center bg-contain">
+
+    <!-- Left Content -->
+    <div class="flex-1">
+      <p class="text-red-600 text-sm md:text-lg mb-2">New recipes</p>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-red-700">
+        Straight to your inbox
+      </h2>
+    </div>
+
+    <!-- Right Form -->
+    <div class="flex-1 w-full flex flex-col md:flex-row gap-6 md:gap-8 
+            items-start md:items-center 
+            md:justify-start">
+
+      <!-- Name Input -->
+      <div class="w-full">
+        <input type="text" placeholder="Enter your name"
+          class="w-full border-b-2 border-red-600 bg-transparent outline-none 
+                 placeholder-red-500 text-sm md:text-base py-2">
+      </div>
+
+      <!-- Email Input + Arrow -->
+      <div class="w-full relative">
+        <input type="email" placeholder="Enter your email address here"
+          class="w-full border-b-2 border-red-600 bg-transparent outline-none 
+                 placeholder-red-500 text-sm md:text-base py-2 pr-8">
+
+        <!-- Arrow Icon -->
+        <img src="./assets/images/arrow icon.png"
+             class="w-4 h-4 absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-12 px-4 md:px-8 lg:px-12">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-10">
+    <h2 class="text-2xl md:text-3xl font-semibold">
+      Latest Recipes
+    </h2>
+
+    <a href="receipes2.html"
+   class="flex items-center gap-2 
+          bg-red-600 text-white 
+          px-4 md:px-6 py-2 md:py-3 
+          text-sm md:text-lg font-semibold 
+          rounded-full shadow-md
+          hover:bg-red-700 transition">
+      View All →
+    </a>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    <!-- Card 1 -->
+    <a href="chicken.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/latest recipes 1.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover 
+                    transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          Chickpea and <br> sprouts salad
+        </p>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="grapes.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/latest recipes 2.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          High protein <br> chocolate mousse
+        </p>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="mutton.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/latest recipes 3.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          Big mac lamb chops <br> and veggies
+        </p>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="apple.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/latest recipes 4.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          Healthy apple <br> crumble
+        </p>
+      </div>
+    </a>
+
+  </div>
+
+</section>
+
+<section class="bg-red-600 py-8 md:py-10 px-4">
+  <div class="max-w-5xl mx-auto border border-white rounded-lg p-6 md:p-10 relative flex flex-col items-center justify-center ">
+    
+    <!-- TEXT -->
+    <div class="text-center text-white max-w-md lg:-translate-x-[120px]">
+      
+      <h2 class="text-2xl md:text-4xl font-semibold mb-4">
+        Hello there! I am Tiffy.
+      </h2>
+
+      <p class="text-base md:text-xl mb-6">
+        Start cooking with me
+      </p>
+
+      <div class="flex justify-center gap-5 mb-6">
+        <img src="assets/images/social media links 3.png" alt="facebook" class="w-200 h-200 cursor-pointer" />
+      </div>
+
+      <!-- BUTTON -->
+      <button class="uppercase tracking-wide border border-white px-6 py-2 rounded-md hover:bg-white hover:text-red-600 transition">
+        View More
+      </button>
+
+    </div>
+
+    <!-- IMAGE -->
+    <div class="mt-8 lg:mt-0 lg:absolute lg:right-16">
+      <img
+        src="assets/images/profile.png"
+        class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover"
+      />
+    </div>
+
+  </div>
+</section>
+
+<section class="py-12 px-4 md:px-8 lg:px-12">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-10">
+    <h2 class="text-2xl md:text-3xl font-semibold">
+      Readers Favourites
+    </h2>
+
+    <a href="blog.html"
+   class="flex items-center gap-2 
+          bg-red-600 text-white 
+          px-4 md:px-6 py-2 md:py-3 
+          text-sm md:text-lg font-semibold 
+          rounded-full shadow-md
+          whitespace-nowrap
+          hover:bg-red-700 transition">
+      View All →
+    </a>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    <!-- Card 1 -->
+    <a href="chicken.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/readers fav 1.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover 
+                    transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          Time saving meal <br> prep 
+
+        </p>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="lagasna.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/readers fav 2.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          Toddler -friendly <br> foods
+        </p>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="mutton.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/readers fav 3.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          10-must try vegan <br> recipes
+
+        </p>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="chicken.html"
+       class="group w-full max-w-[300px] mx-auto
+              bg-white rounded-2xl overflow-hidden
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)] 
+              hover:shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+              hover:-translate-y-2 hover:scale-[1.03]
+              transition duration-300 block">
+
+      <div class="overflow-hidden">
+        <img src="./assets/images/readers fav 4.png"
+             class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover transition duration-500 group-hover:scale-110">
+      </div>
+
+      <div class="h-[110px] flex items-center justify-center text-center px-4">
+        <p class="text-gray-800 font-bold text-base md:text-lg leading-snug">
+          Canning and <br> preserving methods
+
+        </p>
+      </div>
+    </a>
+
+  </div>
+
+</section>
+
+<section class="py-12 md:py-16 px-4">
+  <div class="max-w-5xl mx-auto border-2 border-red-500 rounded-lg p-6 md:p-10 text-center bg-white/70 backdrop-blur-sm">
+    
+    <!-- TITLE -->
+    <h2 class="text-red-600 text-2xl md:text-3xl font-bold mb-4">
+      Our Newsletter
+    </h2>
+
+    <!-- DESCRIPTION -->
+    <p class="text-black-800 text-lg md:text-xl max-w-2xl mx-auto mb-8 font-semibold leading-relaxed">
+      Subscribe to our newsletter & keep up with our latest recipes 
+      and organized workshops.
+    </p>
+
+    <!-- INPUT + ICON -->
+    <div class="flex items-center justify-center max-w-xl mx-auto border-b border-gray-600">
+      
+      <input
+        type="email"
+        placeholder="Enter your email address here"
+        class="w-full bg-transparent outline-none py-2 text-sm md:text-base placeholder-black-500"
+      />
+
+      <!-- SEND ICON -->
+      <button class="ml-2 text-xl md:text-2xl">
+        ➤
+      </button>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-4 py-12 text-center">
+  
+  <!-- Heading -->
+  <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 leading-snug">
+    Share Your Meals On With Instagram With
+    <span class="text-red-500">#mykitchen</span><br/>
+    & We Will Reward The Meal Of The Month!
+  </h2>
+
+  <!-- Gallery -->
+  
+  <!-- Gallery -->
+  <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5">
+
+    <!-- Card 1 -->
+    <div class="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img 
+        src="assets/images/insta 1.png"
+        class="w-full h-44 md:h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img 
+        src="assets/images/insta 2.png"
+        class="w-full h-44 md:h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+      
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img 
+        src="assets/images/insta 3.png"
+        class="w-full h-44 md:h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+  
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img 
+        src="assets/images/insta 4.png"
+        class="w-full h-44 md:h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+      
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="group relative overflow-hidden rounded-xl cursor-pointer">
+      <img 
+        src="assets/images/insta 5.png"
+        class="w-full h-44 md:h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+        
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="bg-white-100 relative overflow-hidden py-16">
+
+  <!-- Background dots -->
+  <div class="absolute inset-0 opacity-20 pointer-events-none">
+    <div class="w-full h-full bg-[radial-gradient(circle,_#ccc_1px,_transparent_1px)] bg-[size:40px_40px]"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+
+    <!-- Logo -->
+    <div class="flex justify-center mb-6">
+      <img src="assets/images/logo.png" alt="My Kitchen" class="h-20 object-contain">
+    </div>
+
+    <!-- Title -->
+    <h3 class="text-xl md:text-2xl text-black font-medium mb-6">
+      Healthy recipes for busy people
+    </h3>
+    
+    <div class="flex justify-center space-x-6 mb-8">
+    <img src="assets/images/social media links.png"
+       class="h-30 w-auto sm:h-10 sm:w-auto 
+           max-w-[180px] sm:max-w-none
+           object-contain transition hover:scale-110" />
+    </div>
+
+   
+
+    <!-- Email Input -->
+    <div class="max-w-md mx-auto">
+      <div class="flex items-center border-b border-black pb-2">
+        <input 
+          type="email" 
+          placeholder="Enter your email address here"
+          class="w-full bg-transparent outline-none text-black text-lg placeholder-gray-500"
+        >
+        <button class="text-black text-xl hover:translate-x-1 transition">
+          ➤
+        </button>
+      </div>
+
+      <p class="text-lg text-black mt-2">
+        *Be informed about the latest recipes and workshops
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="max-w-6xl mx-auto px-4 mt-12 flex flex-col md:flex-row justify-between items-center text-black font-bold text-base">
+    <p class="mb-4 md:mb-0 cursor-pointer hover:underline">
+      Privacy Policy
+    </p>
+    <p>
+      copyrights 2022 © my kitchen
+    </p>
+  </div>
+
+</footer>
+
+</body>
+</html>
